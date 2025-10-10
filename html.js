@@ -3,7 +3,7 @@ function berjatuhan() {const heart = document.createElement("div"); heart.classN
 
 const box = document.getElementById('pergeseran');
 const totalSlide = box.children.length;
-console.log('Skrip dibuat oleh feeldream.id 😋');
+console.log('Skrip dibuat oleh phntm.co 😋');
 console.log('Total Slide: ', totalSlide);
 totalPesan = totalSlide;
 
@@ -15,7 +15,6 @@ totalPesan = totalSlide;
         loveIn.style="transition:all .5s ease;opacity:0";
         ftAwal.style="transition:all .5s ease;opacity:0";
         ket.style="transition:all .5s ease;opacity:0";
-        link.style="transition:all .5s ease;opacity:0";
         fungsiAwal=1;setTimeout(initengahan,300);
       } else {
       	sudahklik = true;
