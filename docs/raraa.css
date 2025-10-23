@@ -1,0 +1,268 @@
+/* ========================================================================= */
+/* BASE STYLES & FONT ROMANTIS */
+/* ========================================================================= */
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&display=swap');
+
+:root {
+    --primary-color: #ff0066; /* Merah Jambu Romantis */
+    --secondary-color: #ffccd5; /* Merah Jambu Lembut */
+    --text-color: #ffffff;
+    --bg-overlay: rgba(0, 0, 0, 0.65);
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
+    font-family: 'Playfair Display', serif;
+    color: var(--text-color);
+    overflow-x: hidden;
+}
+
+/* ========================================================================= */
+/* LIVE BACKGROUND (Latar Belakang Hidup) */
+/* ========================================================================= */
+
+.live-background {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -2; 
+    background-image: url('assets/Background.jpg'); /* Pastikan path ini betul */
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    filter: brightness(0.65); /* Gelapkan sedikit */
+}
+
+/* Animasi Hati Terapung (Digerakkan oleh script.js) */
+.heart-container {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    z-index: -1; 
+}
+
+.heart {
+    position: absolute;
+    bottom: -10vh;
+    background-color: var(--secondary-color);
+    transform: rotate(-45deg);
+    opacity: 0;
+    animation: floatUp linear infinite;
+}
+
+.heart::before, .heart::after {
+    content: "";
+    position: absolute;
+    background-color: var(--secondary-color);
+    border-radius: 50%;
+    width: 100%;
+    height: 100%;
+}
+
+.heart::before { top: -50%; left: 0; }
+.heart::after { top: 0; left: 50%; }
+
+@keyframes floatUp {
+    0% { transform: translateY(0) rotate(-45deg) scale(0.5); opacity: 0; }
+    50% { opacity: 0.8; }
+    100% { transform: translateY(-100vh) rotate(-45deg) scale(1.2); opacity: 0; }
+}
+
+/* ========================================================================= */
+/* KONTEN UTAMA (Digunakan oleh kedua-dua laman) */
+/* ========================================================================= */
+
+.container {
+    text-align: center;
+    background: var(--bg-overlay);
+    backdrop-filter: blur(6px); 
+    padding: 30px;
+    border-radius: 20px;
+    box-shadow: 0px 0px 30px rgba(255, 0, 102, 0.5);
+    width: 90%;
+    position: relative;
+    z-index: 10;
+    margin: 20px 0;
+    max-height: 90vh;
+    overflow-y: auto;
+}
+
+h1 {
+    font-size: 2.5em;
+    color: var(--secondary-color);
+    margin-bottom: 20px;
+    text-shadow: 2px 2px 5px rgba(0,0,0,0.7);
+}
+
+/* ========================================================================= */
+/* STYLES BUTTON RESPONSIVE */
+/* ========================================================================= */
+
+.next-button {
+    display: inline-block;
+    padding: 15px 35px;
+    font-size: 1.2em;
+    font-weight: 700;
+    color: var(--text-color);
+    background: linear-gradient(135deg, var(--primary-color), #ff66cc);
+    text-decoration: none;
+    border-radius: 30px;
+    border: none;
+    cursor: pointer;
+    transition: background 0.3s ease-in-out, transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+    box-shadow: 0px 8px 20px rgba(255, 0, 102, 0.6);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-top: 20px;
+}
+
+.next-button:hover {
+    background: linear-gradient(135deg, #ff66cc, var(--primary-color));
+    transform: translateY(-3px) scale(1.02); 
+    box-shadow: 0px 15px 30px rgba(255, 0, 102, 0.8);
+}
+
+.next-button:active {
+    transform: translateY(1px);
+    box-shadow: 0px 5px 10px rgba(255, 0, 102, 0.6);
+}
+
+/* ========================================================================= */
+/* STYLES KHUSUS LAMAN 1 (Sambutan Awal) */
+/* ========================================================================= */
+
+.photo {
+    max-width: 500px;
+    width: 100%;
+    height: auto;
+    border-radius: 15px;
+    margin: 20px auto;
+    display: block;
+    box-shadow: 0px 10px 20px rgba(0,0,0,0.5);
+    border: 5px solid var(--secondary-color);
+    transition: transform 0.4s ease-in-out;
+}
+
+.photo:hover {
+    transform: scale(1.05);
+}
+
+/* ========================================================================= */
+/* STYLES KHUSUS LAMAN 2 (Grid Unik, Gambar, Mesej, Video) */
+/* ========================================================================= */
+
+.container.page-two {
+    display: grid;
+    /* Susun atur petak: 4 bahagian konten + 1 bahagian video + 1 bahagian butang */
+    grid-template-areas:
+        "title title"
+        "box1 text1"
+        "text2 box2"
+        "video-area video-area"
+        "button button";
+    gap: 25px;
+    max-width: 850px;
+}
+
+.title-area {
+    grid-area: title;
+    font-size: 2.5em;
+    color: var(--secondary-color);
+    text-shadow: 2px 2px 5px rgba(0,0,0,0.8);
+    margin-bottom: 10px;
+}
+
+/* Kotak Gambar */
+.box {
+    width: 100%;
+    height: 250px;
+    border: 4px solid var(--secondary-color);
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.4);
+    transition: transform 0.3s ease;
+}
+
+.box img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* Kotak Teks Mesej */
+.text {
+    background-color: rgba(255, 255, 255, 0.15);
+    color: var(--text-color);
+    padding: 20px;
+    border-radius: 15px;
+    font-size: 1.1em;
+    line-height: 1.7;
+    text-align: left;
+    border-left: 5px solid var(--primary-color);
+}
+
+.box-top-left { grid-area: box1; }
+.text-top-right { grid-area: text1; }
+.text-bottom-left { grid-area: text2; }
+.box-bottom-right { grid-area: box2; }
+.final-button { grid-area: button; margin-top: 10px; }
+
+/* RUANG VIDEO (Permintaan anda) */
+.video-area {
+    grid-area: video-area;
+    padding: 15px;
+    border-radius: 20px;
+    background: rgba(0, 0, 0, 0.3);
+}
+
+.video-wrapper {
+    position: relative;
+    width: 100%;
+    padding-bottom: 56.25%; /* Nisbah 16:9 */
+    height: 0;
+    overflow: hidden;
+    border-radius: 15px;
+}
+
+.video-wrapper iframe, .video-wrapper video {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: none;
+}
+
+/* ========================================================================= */
+/* MEDIA QUERIES (Responsif untuk mobile) */
+/* ========================================================================= */
+@media (max-width: 768px) {
+    .container.page-two {
+        /* Susun semua petak secara menegak di skrin kecil */
+        grid-template-areas:
+            "title"
+            "box1"
+            "text1"
+            "text2"
+            "box2"
+            "video-area"
+            "button";
+        gap: 15px;
+    }
+    
+    .box, .text {
+        grid-column: 1 / -1; 
+        height: auto;
+    }
+}
