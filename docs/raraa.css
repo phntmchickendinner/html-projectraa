@@ -1,13 +1,14 @@
 /* ========================================================================= */
-/* BASE STYLES & FONT ROMANTIS */
+/* BASE STYLES & FONT MODEN */
 /* ========================================================================= */
-@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;700&display=swap');
+/* Font moden dan clean: Montserrat */
 
 :root {
-    --primary-color: #ff0066; /* Merah Jambu Romantis */
-    --secondary-color: #ffccd5; /* Merah Jambu Lembut */
+    --primary-color: #e83e8c; /* Pink Moden/Mauve yang Lebih Vibrant */
+    --secondary-color: #fce4ec; /* Pink Sangat Lembut, hampir putih */
     --text-color: #ffffff;
-    --bg-overlay: rgba(0, 0, 0, 0.65);
+    --bg-overlay: rgba(0, 0, 0, 0.7); /* Lebih gelap untuk kontras di mobile */
 }
 
 * {
@@ -20,13 +21,14 @@ body {
     align-items: center;
     min-height: 100vh;
     margin: 0;
-    font-family: 'Playfair Display', serif;
+    font-family: 'Montserrat', sans-serif;
     color: var(--text-color);
     overflow-x: hidden;
+    padding: 0;
 }
 
 /* ========================================================================= */
-/* LIVE BACKGROUND (Latar Belakang Hidup) */
+/* LIVE BACKGROUND & ANIMASI HATI (Tiada Perubahan Logik) */
 /* ========================================================================= */
 
 .live-background {
@@ -36,40 +38,16 @@ body {
     width: 100%;
     height: 100%;
     z-index: -2; 
-    background-image: url('assets/Background.jpg'); /* Pastikan path ini betul */
+    background-image: url('assets/Background.jpg');
     background-size: cover;
     background-position: center;
     background-attachment: fixed;
-    filter: brightness(0.65); /* Gelapkan sedikit */
+    filter: brightness(0.6); 
 }
 
-/* Animasi Hati Terapung (Digerakkan oleh script.js) */
-.heart-container {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    overflow: hidden;
-    z-index: -1; 
-}
-
-.heart {
-    position: absolute;
-    bottom: -10vh;
-    background-color: var(--secondary-color);
-    transform: rotate(-45deg);
-    opacity: 0;
-    animation: floatUp linear infinite;
-}
-
-.heart::before, .heart::after {
-    content: "";
-    position: absolute;
-    background-color: var(--secondary-color);
-    border-radius: 50%;
-    width: 100%;
-    height: 100%;
-}
-
+.heart-container { position: absolute; width: 100%; height: 100%; overflow: hidden; z-index: -1; }
+.heart { position: absolute; bottom: -10vh; background-color: var(--secondary-color); transform: rotate(-45deg); opacity: 0; animation: floatUp linear infinite; }
+.heart::before, .heart::after { content: ""; position: absolute; background-color: var(--secondary-color); border-radius: 50%; width: 100%; height: 100%; }
 .heart::before { top: -50%; left: 0; }
 .heart::after { top: 0; left: 50%; }
 
@@ -80,150 +58,173 @@ body {
 }
 
 /* ========================================================================= */
-/* KONTEN UTAMA (Digunakan oleh kedua-dua laman) */
+/* KONTEN UTAMA & MODERNIZATION (MOBILE FIRST) */
 /* ========================================================================= */
 
 .container {
     text-align: center;
     background: var(--bg-overlay);
-    backdrop-filter: blur(6px); 
-    padding: 30px;
-    border-radius: 20px;
-    box-shadow: 0px 0px 30px rgba(255, 0, 102, 0.5);
-    width: 90%;
+    backdrop-filter: blur(8px); 
+    padding: 30px 20px;
+    border-radius: 25px; 
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5); 
+    width: 95%; /* Mobile-first width */
+    max-width: 900px;
     position: relative;
     z-index: 10;
-    margin: 20px 0;
-    max-height: 90vh;
+    margin: 20px auto;
+    height: auto;
     overflow-y: auto;
 }
 
 h1 {
-    font-size: 2.5em;
+    font-size: 1.8em; /* Mobile size */
+    font-weight: 700;
     color: var(--secondary-color);
-    margin-bottom: 20px;
-    text-shadow: 2px 2px 5px rgba(0,0,0,0.7);
+    margin-bottom: 25px;
+    text-shadow: 0 2px 5px rgba(0,0,0,0.8);
 }
 
 /* ========================================================================= */
-/* STYLES BUTTON RESPONSIVE */
+/* RUANG GIF BARU - CUTE & TRANSITION MODERN */
+/* ========================================================================= */
+
+.gif-decoration {
+    position: absolute;
+    width: 80px; 
+    height: 80px;
+    z-index: 20;
+    transition: transform 0.5s ease-in-out, box-shadow 0.3s ease-in-out;
+    border-radius: 50%; 
+    overflow: hidden; 
+    box-shadow: 0 5px 15px rgba(255, 105, 180, 0.5); 
+    cursor: pointer;
+}
+
+/* Kesan Interaktif (Hover/Sentuhan) */
+.gif-decoration:hover {
+    transform: scale(1.2) rotate(5deg); 
+    box-shadow: 0 8px 25px rgba(255, 105, 180, 0.8);
+}
+
+.gif-decoration img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; 
+}
+
+/* Animasi Terapung (Berterusan) */
+.gif-top-left {
+    top: -40px; 
+    left: -40px;
+    animation: floatAnim 4s ease-in-out infinite alternate;
+}
+
+.gif-bottom-right {
+    bottom: -40px;
+    right: -40px;
+    animation: floatAnim 4s ease-in-out infinite alternate-reverse;
+}
+
+@keyframes floatAnim {
+    from { transform: translateY(0); }
+    to { transform: translateY(-10px); }
+}
+
+/* ========================================================================= */
+/* STYLES BUTTON MODERN & RESPONSIVE */
 /* ========================================================================= */
 
 .next-button {
-    display: inline-block;
-    padding: 15px 35px;
-    font-size: 1.2em;
+    display: block; 
+    width: 80%;
+    max-width: 350px; 
+    margin: 25px auto; 
+    padding: 16px 30px;
+    font-size: 1.1em;
     font-weight: 700;
     color: var(--text-color);
-    background: linear-gradient(135deg, var(--primary-color), #ff66cc);
+    background: linear-gradient(135deg, var(--primary-color), #ff66a2);
     text-decoration: none;
-    border-radius: 30px;
-    border: none;
-    cursor: pointer;
-    transition: background 0.3s ease-in-out, transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
-    box-shadow: 0px 8px 20px rgba(255, 0, 102, 0.6);
+    border-radius: 50px; 
+    border: 2px solid var(--secondary-color); 
+    box-shadow: 0 8px 25px rgba(232, 62, 140, 0.7);
+    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
     text-transform: uppercase;
     letter-spacing: 1px;
-    margin-top: 20px;
 }
 
 .next-button:hover {
-    background: linear-gradient(135deg, #ff66cc, var(--primary-color));
-    transform: translateY(-3px) scale(1.02); 
-    box-shadow: 0px 15px 30px rgba(255, 0, 102, 0.8);
-}
-
-.next-button:active {
-    transform: translateY(1px);
-    box-shadow: 0px 5px 10px rgba(255, 0, 102, 0.6);
+    transform: translateY(-5px) scale(1.05); 
+    background: linear-gradient(135deg, #ff66a2, var(--primary-color));
+    box-shadow: 0 15px 35px rgba(232, 62, 140, 0.9);
 }
 
 /* ========================================================================= */
-/* STYLES KHUSUS LAMAN 1 (Sambutan Awal) */
+/* STYLES KHUSUS LAMAN 1 (PHOTO) */
 /* ========================================================================= */
 
 .photo {
-    max-width: 500px;
     width: 100%;
-    height: auto;
-    border-radius: 15px;
+    max-width: 450px;
+    border-radius: 10px;
     margin: 20px auto;
-    display: block;
-    box-shadow: 0px 10px 20px rgba(0,0,0,0.5);
-    border: 5px solid var(--secondary-color);
-    transition: transform 0.4s ease-in-out;
-}
-
-.photo:hover {
-    transform: scale(1.05);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.5);
+    border: 8px solid var(--secondary-color); 
+    transition: transform 0.5s ease-in-out;
 }
 
 /* ========================================================================= */
-/* STYLES KHUSUS LAMAN 2 (Grid Unik, Gambar, Mesej, Video) */
+/* STYLES KHUSUS LAMAN 2 (GRID & KONTEN) */
 /* ========================================================================= */
 
 .container.page-two {
-    display: grid;
-    /* Susun atur petak: 4 bahagian konten + 1 bahagian video + 1 bahagian butang */
+    grid-template-columns: 1fr; /* Mobile: satu lajur */
     grid-template-areas:
-        "title title"
-        "box1 text1"
-        "text2 box2"
-        "video-area video-area"
-        "button button";
-    gap: 25px;
-    max-width: 850px;
+        "title"
+        "gif1" 
+        "box1"
+        "text1"
+        "box2"
+        "text2"
+        "video-area"
+        "button";
+    gap: 20px;
 }
 
 .title-area {
     grid-area: title;
-    font-size: 2.5em;
+    font-size: 1.8em;
+    font-weight: 700;
     color: var(--secondary-color);
-    text-shadow: 2px 2px 5px rgba(0,0,0,0.8);
-    margin-bottom: 10px;
 }
 
 /* Kotak Gambar */
 .box {
     width: 100%;
-    height: 250px;
-    border: 4px solid var(--secondary-color);
-    border-radius: 15px;
-    overflow: hidden;
-    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.4);
-    transition: transform 0.3s ease;
-}
-
-.box img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
+    height: 200px;
+    border: 4px solid var(--primary-color);
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
 }
 
 /* Kotak Teks Mesej */
 .text {
-    background-color: rgba(255, 255, 255, 0.15);
+    background-color: rgba(255, 255, 255, 0.1); 
     color: var(--text-color);
     padding: 20px;
-    border-radius: 15px;
-    font-size: 1.1em;
-    line-height: 1.7;
-    text-align: left;
-    border-left: 5px solid var(--primary-color);
+    border-radius: 10px;
+    font-size: 1em;
+    border-left: 6px solid var(--primary-color); 
+    box-shadow: inset 0 0 10px rgba(0,0,0,0.2); 
 }
 
-.box-top-left { grid-area: box1; }
-.text-top-right { grid-area: text1; }
-.text-bottom-left { grid-area: text2; }
-.box-bottom-right { grid-area: box2; }
-.final-button { grid-area: button; margin-top: 10px; }
-
-/* RUANG VIDEO (Permintaan anda) */
+/* RUANG VIDEO */
 .video-area {
     grid-area: video-area;
-    padding: 15px;
-    border-radius: 20px;
-    background: rgba(0, 0, 0, 0.3);
+    padding: 20px;
+    border-radius: 15px;
+    background: rgba(255, 255, 255, 0.1); 
 }
 
 .video-wrapper {
@@ -232,10 +233,10 @@ h1 {
     padding-bottom: 56.25%; /* Nisbah 16:9 */
     height: 0;
     overflow: hidden;
-    border-radius: 15px;
+    border-radius: 10px;
 }
 
-.video-wrapper iframe, .video-wrapper video {
+.video-wrapper video {
     position: absolute;
     top: 0;
     left: 0;
@@ -244,25 +245,61 @@ h1 {
     border: none;
 }
 
+.final-button { 
+    grid-area: button; 
+    margin-top: 10px; 
+}
+
+
 /* ========================================================================= */
-/* MEDIA QUERIES (Responsif untuk mobile) */
+/* MEDIA QUERIES (Desktop View - Susun Atur Berkembar) */
 /* ========================================================================= */
-@media (max-width: 768px) {
-    .container.page-two {
-        /* Susun semua petak secara menegak di skrin kecil */
-        grid-template-areas:
-            "title"
-            "box1"
-            "text1"
-            "text2"
-            "box2"
-            "video-area"
-            "button";
-        gap: 15px;
+@media (min-width: 769px) {
+    .container {
+        padding: 50px;
+    }
+
+    h1 {
+        font-size: 2.5em; /* Saiz tajuk Desktop */
     }
     
-    .box, .text {
-        grid-column: 1 / -1; 
-        height: auto;
+    .next-button {
+        display: inline-block;
+        width: auto;
+    }
+
+    /* Susun atur Laman 2 untuk Desktop (2 lajur) */
+    .container.page-two {
+        grid-template-columns: 1fr 1fr;
+        grid-template-areas:
+            "gif1 title"
+            "box1 text1"
+            "text2 box2"
+            "video-area video-area"
+            "button button";
+        gap: 30px;
+    }
+
+    /* Saiz dan penempatan GIF di Desktop */
+    .gif-decoration {
+        width: 100px;
+        height: 100px;
+    }
+    
+    .gif-top-left { top: -50px; left: -50px; }
+    .gif-bottom-right { bottom: -50px; right: -50px; }
+    
+    /* Penempatan GIF di Laman 2 (di sebelah tajuk) */
+    .gif-page-two {
+        grid-area: gif1;
+        position: static; 
+        width: 100px;
+        height: 100px;
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+        border-radius: 15px; /* Bentuk segi empat tepat untuk grid */
+        box-shadow: none;
+        animation: none;
     }
 }
