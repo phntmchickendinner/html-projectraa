@@ -2,13 +2,12 @@
 /* BASE STYLES & FONT MODEN */
 /* ========================================================================= */
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;700&display=swap');
-/* Font moden dan clean: Montserrat */
 
 :root {
     --primary-color: #e83e8c; /* Pink Moden/Mauve yang Lebih Vibrant */
     --secondary-color: #fce4ec; /* Pink Sangat Lembut, hampir putih */
     --text-color: #ffffff;
-    --bg-overlay: rgba(0, 0, 0, 0.7); /* Lebih gelap untuk kontras di mobile */
+    --bg-overlay: rgba(0, 0, 0, 0.7); 
 }
 
 * {
@@ -58,7 +57,7 @@ body {
 }
 
 /* ========================================================================= */
-/* KONTEN UTAMA & MODERNIZATION (MOBILE FIRST) */
+/* KONTEN UTAMA & MODERNIZATION */
 /* ========================================================================= */
 
 .container {
@@ -68,7 +67,7 @@ body {
     padding: 30px 20px;
     border-radius: 25px; 
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5); 
-    width: 95%; /* Mobile-first width */
+    width: 95%; 
     max-width: 900px;
     position: relative;
     z-index: 10;
@@ -78,7 +77,7 @@ body {
 }
 
 h1 {
-    font-size: 1.8em; /* Mobile size */
+    font-size: 1.8em; 
     font-weight: 700;
     color: var(--secondary-color);
     margin-bottom: 25px;
@@ -101,7 +100,6 @@ h1 {
     cursor: pointer;
 }
 
-/* Kesan Interaktif (Hover/Sentuhan) */
 .gif-decoration:hover {
     transform: scale(1.2) rotate(5deg); 
     box-shadow: 0 8px 25px rgba(255, 105, 180, 0.8);
@@ -113,7 +111,6 @@ h1 {
     object-fit: cover; 
 }
 
-/* Animasi Terapung (Berterusan) */
 .gif-top-left {
     top: -40px; 
     left: -40px;
@@ -161,12 +158,16 @@ h1 {
 }
 
 /* ========================================================================= */
-/* STYLES KHUSUS LAMAN 1 (PHOTO) */
+/* STYLES KHUSUS LAMAN 1 (GAMBAR PORTRAIT) */
 /* ========================================================================= */
 
 .photo {
     width: 100%;
+    /* TETAPKAN KETINGGIAN MAKSIMUM yang sesuai untuk format portrait di mobile */
+    max-height: 550px; 
     max-width: 450px;
+    height: auto; /* Biarkan ketinggian mengikut aspect ratio */
+    object-fit: contain; /* Pastikan seluruh gambar portrait dimuatkan */
     border-radius: 10px;
     margin: 20px auto;
     box-shadow: 0 5px 15px rgba(0,0,0,0.5);
@@ -175,11 +176,11 @@ h1 {
 }
 
 /* ========================================================================= */
-/* STYLES KHUSUS LAMAN 2 (GRID & KONTEN) */
+/* STYLES KHUSUS LAMAN 2 (GRID & KONTEN PORTRAIT) */
 /* ========================================================================= */
 
 .container.page-two {
-    grid-template-columns: 1fr; /* Mobile: satu lajur */
+    grid-template-columns: 1fr; 
     grid-template-areas:
         "title"
         "gif1" 
@@ -199,16 +200,27 @@ h1 {
     color: var(--secondary-color);
 }
 
-/* Kotak Gambar */
+/* Kotak Gambar (Portrait) */
 .box {
     width: 100%;
-    height: 200px;
+    /* TINGKATKAN KETINGGIAN untuk memberi ruang yang lebih baik untuk gambar portrait di mobile */
+    height: 300px; 
     border: 4px solid var(--primary-color);
     border-radius: 10px;
+    overflow: hidden;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
 }
 
-/* Kotak Teks Mesej */
+.box img {
+    width: 100%;
+    height: 100%;
+    /* 'object-fit: contain' memastikan gambar portrait dimuatkan sepenuhnya dalam kotak. */
+    object-fit: contain; 
+    background-color: rgba(255, 255, 255, 0.05); /* Latar belakang lembut jika gambar tidak mengisi 100% */
+}
+
+
+/* Kotak Teks Mesej (Tiada Perubahan) */
 .text {
     background-color: rgba(255, 255, 255, 0.1); 
     color: var(--text-color);
@@ -219,7 +231,7 @@ h1 {
     box-shadow: inset 0 0 10px rgba(0,0,0,0.2); 
 }
 
-/* RUANG VIDEO */
+/* RUANG VIDEO (Portrait) */
 .video-area {
     grid-area: video-area;
     padding: 20px;
@@ -230,7 +242,10 @@ h1 {
 .video-wrapper {
     position: relative;
     width: 100%;
-    padding-bottom: 56.25%; /* Nisbah 16:9 */
+    /* TINGKATKAN padding-bottom untuk nisbah portrait (cth: 9:16) */
+    /* 16/9 = 1.77. 1/1.77 * 100 = 56.25% (Lama). 16/9 = 1.77. 16/9 * 100 = 177.77% (untuk video portrait) */
+    padding-bottom: 177.77%; 
+    max-height: 500px; /* Hadkan ketinggian maks di Desktop */
     height: 0;
     overflow: hidden;
     border-radius: 10px;
@@ -243,16 +258,11 @@ h1 {
     width: 100%;
     height: 100%;
     border: none;
+    object-fit: cover; /* Pastikan video mengisi wrapper (penting jika nisbah berbeza) */
 }
-
-.final-button { 
-    grid-area: button; 
-    margin-top: 10px; 
-}
-
 
 /* ========================================================================= */
-/* MEDIA QUERIES (Desktop View - Susun Atur Berkembar) */
+/* MEDIA QUERIES (Desktop View) */
 /* ========================================================================= */
 @media (min-width: 769px) {
     .container {
@@ -260,7 +270,7 @@ h1 {
     }
 
     h1 {
-        font-size: 2.5em; /* Saiz tajuk Desktop */
+        font-size: 2.5em; 
     }
     
     .next-button {
@@ -268,7 +278,6 @@ h1 {
         width: auto;
     }
 
-    /* Susun atur Laman 2 untuk Desktop (2 lajur) */
     .container.page-two {
         grid-template-columns: 1fr 1fr;
         grid-template-areas:
@@ -279,27 +288,26 @@ h1 {
             "button button";
         gap: 30px;
     }
+    
+    /* TETAPKAN KETINGGIAN BOX yang lebih besar untuk portrait di Desktop */
+    .box {
+        height: 350px; 
+    }
 
-    /* Saiz dan penempatan GIF di Desktop */
-    .gif-decoration {
-        width: 100px;
-        height: 100px;
+    /* KEMBALIKAN padding-bottom ke nisbah LANDSCAPE 16:9 di desktop untuk ruang yang kemas.
+       Jika anda mahu kekal portrait di desktop, abaikan perenggan di bawah. */
+    .video-wrapper {
+        padding-bottom: 56.25%; /* Kembali ke 16:9 di Desktop */
+        max-height: none;
     }
     
+    .video-wrapper video {
+        object-fit: cover;
+    }
+
+    /* Gaya GIF Kekal Sama */
+    .gif-decoration { width: 100px; height: 100px; }
     .gif-top-left { top: -50px; left: -50px; }
     .gif-bottom-right { bottom: -50px; right: -50px; }
-    
-    /* Penempatan GIF di Laman 2 (di sebelah tajuk) */
-    .gif-page-two {
-        grid-area: gif1;
-        position: static; 
-        width: 100px;
-        height: 100px;
-        display: flex;
-        justify-content: flex-start;
-        align-items: center;
-        border-radius: 15px; /* Bentuk segi empat tepat untuk grid */
-        box-shadow: none;
-        animation: none;
-    }
+    .gif-page-two { grid-area: gif1; position: static; width: 100px; height: 100px; }
 }
